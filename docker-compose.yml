@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - apps-mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_PASSWORD: pass1234
+      MYSQL_ROOT_PASSWORD: pass1234
+      MYSQL_DATABASE: apps_db
+
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/config:/config
+    ports:
+      - 5000:3000
+      - 5001:3001
+    cap_add:
+      - IPC_LOCK
+    restart: unless-stopped
+
+  react-client:
+    build:
+      context: ./my-app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    volumes:
+      - ./my-app:/usr/src/app/my-app
+      - /usr/src/app/my-app/node_modules
+
+  api-server:
+    build:
+      context: ./api
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_HOST=mysql
+    volumes:
+      - ./api:/usr/src/app/api
+      - /usr/src/app/api/node_modules
+    depends_on:
+      - mysql
+
+volumes:
+  apps-mysql-data:
