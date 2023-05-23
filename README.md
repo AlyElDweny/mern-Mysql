@@ -23,3 +23,5 @@ $ docker-compose up -d
 - adding validation
 - adding ui design
 - adding Auth
+
+![Model](https://github.com/AlyElDweny/mern-Mysql/blob/main/graph.png)
