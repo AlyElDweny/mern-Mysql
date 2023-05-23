@@ -28,15 +28,15 @@ services:
       - IPC_LOCK
     restart: unless-stopped
 
-  # react-client:
-  #   build:
-  #     context: ./my-app
-  #   ports:
-  #     - "3000:3000"
-  #   stdin_open: true
-  #   volumes:
-  #     - ./my-app:/usr/src/app/my-app
-  #     - /usr/src/app/my-app/node_modules
+  react-client:
+    build:
+      context: ./my-app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    volumes:
+      - ./my-app:/usr/src/app/my-app
+      - /usr/src/app/my-app/node_modules
 
   api-server:
     build:

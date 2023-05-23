@@ -6,8 +6,8 @@ POST http://localhost:4000/apis/projects/ HTTP/1.1
 content-type: application/json
 
 {
-    "name":"first project",
-    "description":"this is my first project."
+    "name":"second project",
+    "description":"this is my second project."
 }
 
 ### get all projects
