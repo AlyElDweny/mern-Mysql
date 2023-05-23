@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 
 import app from "./server.express";
-import { AppDataSource as conn } from "./data-source";
+import { dbConn as conn } from "./data-source";
 
 dotenv.config();
 //
