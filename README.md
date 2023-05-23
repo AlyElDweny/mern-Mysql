@@ -17,3 +17,9 @@ $ docker-compose up -d
 - username: root
 - password: pass1234
 - hostName: mysql
+
+### TODO:
+
+- adding validation
+- adding ui design
+- adding Auth
